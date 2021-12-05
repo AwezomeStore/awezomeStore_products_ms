@@ -14,4 +14,9 @@ class Price extends Model
         'active',
         'description',
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

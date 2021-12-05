@@ -12,4 +12,14 @@ class SubcategoryProduct extends Model
     protected $fillable = [
         // To do
     ];
+
+    public function subcategory()
+    {
+        return $this->belongsTo(Subcategory::class);
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

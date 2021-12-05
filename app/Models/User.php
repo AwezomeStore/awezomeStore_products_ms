@@ -12,4 +12,19 @@ class User extends Model
     protected $fillable = [
         'role'
     ];
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function interactions()
+    {
+        return $this->hasMany(Interaction::class);
+    }
+
+    public function scores()
+    {
+        return $this->hasMany(Score::class);
+    }
 }

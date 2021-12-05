@@ -12,4 +12,14 @@ class AddedProduct extends Model
     protected $fillable = [
         // To do
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function shopping_cart()
+    {
+        return $this->belongsTo(ShoppingCart::class);
+    }
 }
