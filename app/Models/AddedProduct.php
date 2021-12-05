@@ -10,6 +10,17 @@ class AddedProduct extends Model
     use HasFactory;
 
     protected $fillable = [
-        // To do
+        'product_id',
+        'shopping_cart_id',
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function shopping_cart()
+    {
+        return $this->belongsTo(ShoppingCart::class);
+    }
 }

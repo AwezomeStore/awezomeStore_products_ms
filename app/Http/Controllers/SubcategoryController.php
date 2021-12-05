@@ -3,41 +3,43 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Subcategory;
 use Response;
 
-class SubsubcategoryController extends Controller
+class SubcategoryController extends Controller
 {
-   // get
-    public function index()
-    {
-        $subcategories = Category::all();
-        return Response::json($subcategories, 200);
-    }
-
-    // put
+    // CREATE
     public function store(Request $request)
     {
-        $subcategory = new Category($request->all());
+        $subcategory = new Subcategory($request->all());
 
         $subcategory->save();
         return Response::json($subcategory, 201);
     }
 
-    // update
+    // READ
+    public function index()
+    {
+        $subcategories = Subcategory::all();
+        return Response::json($subcategories, 200);
+    }
+
+    // UPDATE
     public function update(Request $request)
     {
-        $subcategory = Category::findOrFail($request->id);
+        $subcategory = Subcategory::findOrFail($request->id);
         $subcategory->description = $request->description;
+        $subcategory->name = $request->name;
 
         $subcategory->save();
 
         return Response::json($subcategory, 200);
     }
 
-    // delete
+    // DELETE
     public function destroy(Request $request)
     {
-        $subcategory = Category::destroy($request->id);
-        return Response::json($subcategories, 200);
+        $subcategory = Subcategory::destroy($request->id);
+        return Response::json($subcategory, 200);
     }
 }

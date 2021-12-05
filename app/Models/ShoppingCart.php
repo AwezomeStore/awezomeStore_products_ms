@@ -12,4 +12,9 @@ class ShoppingCart extends Model
     protected $fillable = [
         'total_cost',
     ];
+
+    public function added_products()
+    {
+        return $this->hasMany(AddedProduct::class);
+    }
 }

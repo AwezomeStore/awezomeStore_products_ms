@@ -8,14 +8,7 @@ use Response;
 
 class CategoryController extends Controller
 {
-    // get
-    public function index()
-    {
-        $categories = Category::all();
-        return Response::json($categories, 200);
-    }
-
-    // put
+    // CREATE
     public function store(Request $request)
     {
         $category = new Category($request->all());
@@ -24,21 +17,29 @@ class CategoryController extends Controller
         return Response::json($category, 201);
     }
 
-    // update
+    // READ
+    public function index()
+    {
+        $categories = Category::all();
+        return Response::json($categories, 200);
+    }
+
+    // UPDATE
     public function update(Request $request)
     {
         $category = Category::findOrFail($request->id);
         $category->description = $request->description;
+        $category->name = $request->name;
 
         $category->save();
 
         return Response::json($category, 200);
     }
 
-    // delete
+    // DELETE
     public function destroy(Request $request)
     {
         $category = Category::destroy($request->id);
-        return Response::json($categories, 200);
+        return Response::json($category, 200);
     }
 }

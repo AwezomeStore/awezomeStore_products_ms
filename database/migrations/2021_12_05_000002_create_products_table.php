@@ -21,12 +21,18 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
+            // FK
+            $table->foreignId('user_id')->unsigned();
+
             // atributes
             $table->id();
             $table->string('name');
             $table->string('description');
             $table->integer('stock');
             $table->timestamps();
+
+            /*@ Connect user_id with users table*/
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
