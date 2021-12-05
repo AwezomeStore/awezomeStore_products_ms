@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class SubcategoryProduct extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        // To do
+    ];
 }

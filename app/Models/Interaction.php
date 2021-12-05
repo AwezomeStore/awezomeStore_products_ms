@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Interaction extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'visits',
+        'buy',
+    ];
 }

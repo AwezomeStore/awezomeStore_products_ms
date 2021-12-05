@@ -15,6 +15,8 @@ class CreateInteractionsTable extends Migration
     {
         Schema::create('interactions', function (Blueprint $table) {
             $table->id();
+            $table->integer('visits');
+            $table->boolean('buy');
             $table->timestamps();
         });
     }
