@@ -3,25 +3,27 @@ version: '2'
 services:
   mariadb:
     image: docker.io/bitnami/mariadb:10.6
+    container_name: products_db
     environment:
       # ALLOW_EMPTY_PASSWORD is recommended only for development.
       - ALLOW_EMPTY_PASSWORD=yes
-      - MARIADB_USER=my_user
-      - MARIADB_DATABASE=my_database
-      - MARIADB_PASSWORD=my_password
+      - MARIADB_USER=products_user
+      - MARIADB_DATABASE=products_db
+      - MARIADB_PASSWORD=secret
 
   myapp:
     tty: true
     image: docker.io/bitnami/laravel:8
+    container_name: products_ms
     environment:
       - DB_HOST=mariadb
-      - DB_USERNAME=my_user
-      - DB_DATABASE=my_database
-      - DB_PASSWORD=my_password
+      - DB_USERNAME=products_user
+      - DB_DATABASE=products_db
+      - DB_PASSWORD=secret
     depends_on:
       - mariadb
     ports:
-      - 3000:3000
+      - 8000:3000
     volumes:
       - ./:/app
     # privileged: true # Privileged mode could be required to run this container under Windows
