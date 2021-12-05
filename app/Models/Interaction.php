@@ -5,17 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Subsubcategory extends Model
+class Interaction extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'description',
+        'visits',
+        'buy',
     ];
-
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
 }
