@@ -4,41 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Response;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // get
     public function index()
     {
         $categories = Category::all();
-        return $categories;
+        return Response::json($categories, 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    // put
     public function store(Request $request)
     {
         $category = new Category($request->all());
 
         $category->save();
-        return $category;
+        return Response::json($category, 201);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // update
     public function update(Request $request)
     {
         $category = Category::findOrFail($request->id);
@@ -46,18 +32,13 @@ class CategoryController extends Controller
 
         $category->save();
 
-        return $category;
+        return Response::json($category, 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // delete
     public function destroy(Request $request)
     {
         $category = Category::destroy($request->id);
-        return $category;
+        return Response::json($categories, 200);
     }
 }
