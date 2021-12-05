@@ -3,82 +3,42 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\AddedProduct;
+use Response;
 
 class AddedProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    // CREATE
     public function store(Request $request)
     {
-        //
+        $addedProduct = new AddedProduct($request->all());
+
+        $addedProduct->save();
+        return Response::json($addedProduct, 201);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    // READ
+    public function index()
     {
-        //
+        $addedProducts = AddedProduct::all();
+        return Response::json($addedProducts, 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    // UPDATE
+    public function update(Request $request)
     {
-        //
+        $addedProduct = AddedProduct::findOrFail($request->id);
+        $addedProduct->role = $request->role;
+
+        $addedProduct->save();
+
+        return Response::json($addedProduct, 200);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    // DELETE
+    public function destroy(Request $request)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $addedProduct = AddedProduct::destroy($request->id);
+        return Response::json($addedProduct, 200);
     }
 }

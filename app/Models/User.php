@@ -27,4 +27,9 @@ class User extends Model
     {
         return $this->hasMany(Score::class);
     }
+
+    public function product()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

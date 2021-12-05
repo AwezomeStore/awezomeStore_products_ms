@@ -3,82 +3,42 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\SubsubcategoryProductProduct;
+use Response;
 
-class SubcategoryProductController extends Controller
+class SubcategoryProductProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    // CREATE
     public function store(Request $request)
     {
-        //
+        $subcategoryProduct = new SubsubcategoryProductProduct($request->all());
+
+        $subcategoryProduct->save();
+        return Response::json($subcategoryProduct, 201);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    // READ
+    public function index()
     {
-        //
+        $subcategoryProducts = SubsubcategoryProductProduct::all();
+        return Response::json($subcategoryProducts, 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    // UPDATE
+    public function update(Request $request)
     {
-        //
+        $subcategoryProduct = SubsubcategoryProductProduct::findOrFail($request->id);
+        $subcategoryProduct->description = $request->description;
+
+        $subcategoryProduct->save();
+
+        return Response::json($subcategoryProduct, 200);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    // DELETE
+    public function destroy(Request $request)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $subcategoryProduct = SubsubcategoryProductProduct::destroy($request->id);
+        return Response::json($subcategoryProduct, 200);
     }
 }

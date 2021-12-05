@@ -3,7 +3,15 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SubcategoryController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\PriceController;
+use App\Http\Controllers\ScoreController;
+use App\Http\Controllers\InteractionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +25,22 @@ use App\Http\Controllers\CategoryController;
 */
 
 Route::prefix('v1')->group(function () {
+    /**
+     * Product
+     */
+    Route::get('/product', [ProductController::class, 'index']);
+    Route::post('/product', [ProductController::class, 'store']);
+    Route::put('/product', [ProductController::class, 'update']);
+    Route::delete('/product', [ProductController::class, 'destroy']);
+
+    /**
+     * Product
+     */
+    Route::get('/product', [ProductController::class, 'index']);
+    Route::post('/product', [ProductController::class, 'store']);
+    Route::put('/product', [ProductController::class, 'update']);
+    Route::delete('/product', [ProductController::class, 'destroy']);
+
     /**
      * Category
      */

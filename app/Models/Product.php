@@ -15,6 +15,11 @@ class Product extends Model
         'stock',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function prices()
     {
         return $this->hasMany(Price::class);
