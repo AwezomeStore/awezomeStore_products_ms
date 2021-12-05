@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Shopping;
+use App\Models\ShoppingCart;
 use Response;
 
 class ShoppingCartController extends Controller
