@@ -4,17 +4,22 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubcategoryProductsTable extends Migration
+class CreateShoppingCartsTable extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * One to many relationship
+     * ShoppingCart -< AddedProduct
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('subcategory_products', function (Blueprint $table) {
+        Schema::create('shopping_carts', function (Blueprint $table) {
+            // atributes
             $table->id();
+            $table->float('total_cost');
             $table->timestamps();
         });
     }
@@ -26,6 +31,6 @@ class CreateSubcategoryProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subcategory_products');
+        Schema::dropIfExists('shopping_carts');
     }
 }
