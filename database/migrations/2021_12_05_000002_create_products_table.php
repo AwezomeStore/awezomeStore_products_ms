@@ -29,6 +29,8 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->integer('stock');
+            $table->string('img_info');
+            $table->float('range');
             $table->timestamps();
 
             /*@ Connect user_id with users table*/
